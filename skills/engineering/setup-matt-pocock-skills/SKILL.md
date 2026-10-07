@@ -111,6 +111,13 @@ Then write the docs files using the seed templates in this skill folder as a sta
 
 For "other" issue trackers, write `docs/agents/issue-tracker.md` from scratch using the user's description.
 
+**Create missing labels (GitHub and GitLab only).** The mapping only names labels; the downstream skills fail on a tracker that lacks them (`gh issue create --label <missing>` errors instead of creating it). List the tracker's labels (`gh label list` or `glab label list`) and create each of these that is missing:
+
+- When `triage` is installed: every label string in the right-hand column of `docs/agents/triage-labels.md`.
+- When `wayfinder` is installed: `wayfinder:map`, `wayfinder:research`, `wayfinder:prototype`, `wayfinder:grilling`, `wayfinder:task`.
+
+Never rename or delete existing labels. Skip this step for local markdown and "other" trackers. This step is done when a fresh label listing shows every one of them.
+
 ### 5. Done
 
 Tell the user the setup is complete and which engineering skills will now read from these files. Mention they can edit `docs/agents/*.md` directly later; re-running this skill is only necessary if they want to switch issue trackers or restart from scratch.
